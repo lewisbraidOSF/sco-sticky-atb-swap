@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Moon & Stars Coin Pendant – Shane Co. PDP (Mobile, static Shop)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* ---------- Tokens (from Figma variables) ---------- */
+:root {
+  color-scheme: light;
+  --primary: #272727;
+  --primary-foreground: #ffffff;
+  --foreground: #0b0b0b;
+  --secondary: #f8f6f4;
+  --secondary-foreground: #404040;
+  --muted: #ededec;
+  --muted-foreground: #535353;
+  --accent: #ece8e3;
+  --badge: #404040;
+  --badge-text: #f7f7f7;
+  --input: #d5d5d2;
+  --bg-input-50: #fafafa;
+  --success: #2e844a;
+  --finance: #5c0017;
+  --placeholder: #ece8e3;
+  --placeholder-deep: #ddd7cf;
+  --gutter: #e9e7e4;
+
+  --sans: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --script: "Great Vibes", "Snell Roundhand", cursive;
+
+  --margin: 20px;
+  --sticky-h: 70px;
+
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+/* The page reproduces a light-only design, so only the area outside the 390px column follows dark mode. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --gutter: #1c1c1c; }
+}
+:root[data-theme="dark"] { --gutter: #1c1c1c; }
+
+*, *::before, *::after { box-sizing: inherit; }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); -webkit-text-size-adjust: 100%; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  display: grid;
+  place-items: center;
+  background: var(--gutter);
+  font-family: var(--sans);
+  color: var(--primary);
+  -webkit-font-smoothing: antialiased;
+}
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+a { color: inherit; }
+p { margin: 0; }
+h1, h2, h3 { margin: 0; font-weight: 500; }
+img { max-width: 100%; display: block; }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+/* 390 x 844 device frame; the page scrolls inside it */
+.frame {
+  position: relative;
+  width: min(390px, 100vw);
+  height: min(844px, 100%);
+  overflow: hidden;
+  background: var(--primary-foreground);
+  box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 12px 40px rgba(0,0,0,.12);
+}
+@media (max-width: 420px) { .frame { box-shadow: none; } }
+.scroller {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+.scroller::-webkit-scrollbar { display: none; }
+.page {
+  background: var(--primary-foreground);
+  padding-bottom: calc(var(--sticky-h) + env(safe-area-inset-bottom, 0px));
+  position: relative;
+}
+
+/* ---------- Type styles ---------- */
+.label-xs { font: 600 11px/12px var(--sans); letter-spacing: 1px; text-transform: uppercase; }
+.label-u { text-decoration: underline; text-underline-offset: 2px; }
+.h3 { font: 500 28px/36px var(--serif); letter-spacing: -0.7px; font-feature-settings: "lnum" 1, "pnum" 1; }
+.h4 { font: 500 24px/32px var(--serif); letter-spacing: -0.6px; font-feature-settings: "lnum" 1, "pnum" 1; }
+.h5 { font: 500 20px/26px var(--serif); letter-spacing: -0.6px; font-feature-settings: "lnum" 1, "pnum" 1; }
+.body-m { font: 400 16px/24px var(--sans); }
+.body-s-med { font: 500 14px/1 var(--sans); }
+.caption { font: 400 12px/16px var(--sans); letter-spacing: 0.12px; }
+.muted { color: var(--muted-foreground); }
+
+.icon { width: 16px; height: 16px; flex: none; fill: currentColor; }
+.icon-20 { width: 20px; height: 20px; }
+.icon-24 { width: 24px; height: 24px; }
+
+/* Image placeholders (Figma assets could not be exported into this build) */
+.ph {
+  position: relative;
+  background: var(--placeholder);
+  display: flex; align-items: center; justify-content: center;
+  color: #8f8a83;
+  font: 500 10px/14px var(--sans);
+  letter-spacing: 0.5px;
+  text-align: center;
+  overflow: hidden;
+}
+.ph.product { background: var(--secondary); }
+.ph.deep { background: var(--placeholder-deep); }
+.ph > span { padding: 4px 8px; max-width: 80%; }
+
+/* ---------- Header ---------- */
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid var(--input);
+  padding: 16px 16px 16px 20px;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+}
+.header-logo { display: block; line-height: 0; }
+.header-logo img { width: 140px; height: auto; }
+.logo-mark { font: 400 38px/36px var(--script); color: #202020; height: 36px; }
+.logo-tag { font: 600 8.5px/8px var(--serif); letter-spacing: 0.9px; text-transform: uppercase; color: #202020; }
+
+/* ---------- Breadcrumb ---------- */
+.breadcrumb {
+  background: var(--secondary);
+  padding: 12px var(--margin);
+  display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px;
+}
+.breadcrumb a { font: 400 12px/16px var(--sans); letter-spacing: 0.12px; color: var(--muted-foreground); text-decoration: none; }
+.breadcrumb .icon { color: var(--muted-foreground); }
+
+/* ---------- Gallery ---------- */
+.gallery { position: relative; width: 100%; aspect-ratio: 1; }
+.gallery-track {
+  display: flex; height: 100%;
+  overflow-x: auto; scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.gallery-track::-webkit-scrollbar { display: none; }
+.gallery-track .ph { flex: 0 0 100%; height: 100%; scroll-snap-align: start; }
+.try-on {
+  position: absolute; left: 8px; bottom: 8px;
+  height: 32px; padding: 8px 16px 8px 12px;
+  background: #fff; display: flex; align-items: center; gap: 8px;
+}
+.dots { position: absolute; right: 0; bottom: 0; height: 36px; padding: 8px; display: flex; align-items: center; }
+.dots-inner { display: flex; align-items: center; gap: 4px; padding: 0 8px; height: 20px; }
+.dot { width: 4px; height: 4px; border-radius: 3px; background: var(--primary); opacity: .5; transition: width .2s; }
+.dot.on { width: 8px; opacity: 1; }
+
+/* ---------- Product info ---------- */
+.info { padding: 32px var(--margin) 0; display: flex; flex-direction: column; gap: 32px; }
+.info-group { display: flex; flex-direction: column; gap: 16px; }
+.specs { display: flex; flex-wrap: wrap; gap: 4px; color: var(--muted-foreground); }
+.price-main { font: 600 18px/1.2 var(--sans); letter-spacing: -0.45px; }
+.text-link { padding: 8px 0; align-self: flex-start; }
+.sep { height: 1px; background: var(--muted); margin: 12px 0; }
+.config { display: flex; flex-direction: column; gap: 24px; }
+
+.lengths { display: flex; flex-wrap: wrap; gap: 6px; }
+.len {
+  width: 44px; height: 44px; border-radius: 9999px;
+  border: 1px solid var(--input);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.len[aria-checked="true"] { border: 2px solid var(--primary); }
+.len:disabled { background: var(--muted); cursor: not-allowed; }
+.len:disabled span { opacity: .5; }
+.len:disabled::after {
+  content: ""; position: absolute; left: 50%; top: 50%;
+  width: 60px; height: 1px; background: var(--input);
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+.len-summary { display: flex; gap: 12px; }
+.len-summary .strong { font: 600 14px/1 var(--sans); color: var(--muted-foreground); }
+
+.addon-list { display: flex; flex-direction: column; gap: 8px; }
+.addon {
+  width: 100%; text-align: left;
+  background: #fff; border: 1px solid var(--input);
+  padding: 12px; display: flex; align-items: center; gap: 12px;
+}
+.addon-thumb { width: 48px; height: 48px; flex: none; }
+.addon-thumb.engrave { background: var(--secondary); display: flex; align-items: center; justify-content: center; font: 400 24px/1 var(--script); }
+.addon-body { flex: 1; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.addon-sub { font: 400 12px/16px var(--sans); letter-spacing: 0.12px; color: var(--muted-foreground); }
+.addon-sub b { font-weight: 600; }
+
+.finance { background: var(--bg-input-50); padding: 12px; display: flex; gap: 12px; }
+.finance-badge {
+  width: 52px; height: 52px; flex: none; border-radius: 3px;
+  background: var(--finance); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font: 400 15px/1 var(--script);
+}
+.finance-body { display: flex; flex-direction: column; gap: 8px; }
+.finance-title { font: 600 14px/20px var(--sans); }
+.finance-copy { font: 500 12px/16px var(--sans); }
+
+.cta-stack { display: flex; flex-direction: column; gap: 16px; align-items: center; }
+.cta-col { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+.btn-primary {
+  height: 40px; width: 100%; background: var(--primary); color: #fff;
+  display: flex; align-items: center; justify-content: center; padding: 8px 24px;
+}
+.btn-row { display: flex; gap: 8px; }
+.btn-outline {
+  flex: 1; height: 40px; border: 1px solid var(--input);
+  display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 24px;
+}
+.btn-outline[aria-pressed="true"] .ic-off, .btn-outline[aria-pressed="false"] .ic-on { display: none; }
+.chat-link { display: flex; align-items: center; gap: 8px; padding: 8px 0; }
+
+.perks { display: flex; gap: 4px; }
+.perk {
+  flex: 1; background: var(--secondary); padding: 16px;
+  display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center;
+}
+
+.delivery { display: flex; flex-direction: column; }
+.delivery-row { background: #fff; padding: 16px; display: flex; align-items: center; gap: 12px; }
+.delivery-row + .delivery-row { border-top: 1px solid var(--muted); }
+.delivery-text { flex: 1; display: flex; flex-direction: column; gap: 4px; padding: 4px 0; min-width: 0; }
+.delivery-sub { font: 400 12px/16px var(--sans); letter-spacing: 0.12px; color: var(--secondary-foreground); }
+.delivery-sub u, .delivery-sub a { text-decoration: underline; }
+.store-line { display: flex; gap: 4px; font: 500 12px/16px var(--sans); letter-spacing: 0.12px; }
+.in-stock { color: var(--success); }
+
+/* ---------- Carousels ---------- */
+.section { padding: 56px var(--margin); }
+.section-head { display: flex; flex-direction: column; gap: 4px; margin-bottom: 32px; }
+.rail {
+  display: flex; gap: 10px;
+  overflow-x: auto; scroll-snap-type: x mandatory;
+  margin-right: calc(var(--margin) * -1); padding-right: var(--margin);
+  scrollbar-width: none;
+}
+.rail::-webkit-scrollbar { display: none; }
+.rail > * { scroll-snap-align: start; flex: 0 0 260px; }
+
+.pcard { background: #fff; display: flex; flex-direction: column; }
+.pcard-media { position: relative; aspect-ratio: 1; }
+.pcard-media .ph { position: absolute; inset: 0; }
+.badge {
+  position: absolute; left: 12px; top: 12px;
+  background: var(--badge); color: var(--badge-text);
+  padding: 4px 8px; font: 600 10px/12px var(--sans); letter-spacing: 1px; text-transform: uppercase;
+}
+.wish { position: absolute; right: 10px; top: 10px; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; }
+.wish[aria-pressed="true"] .ic-off, .wish[aria-pressed="false"] .ic-on { display: none; }
+.card-dots { position: absolute; right: 0; bottom: 0; padding: 8px; }
+.pcard-body { padding: 16px 16px 16px 0; display: flex; flex-direction: column; gap: 12px; }
+.pcard-body.tight { padding: 12px 16px 12px 0; }
+.pcard-title { font: 500 14px/20px var(--sans); }
+.pcard-price { font: 600 14px/20px var(--sans); }
+.pcard-variant { font: 500 11px/12px var(--sans); letter-spacing: 0.5px; color: var(--muted-foreground); }
+.swatches { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.swatch-set { display: flex; gap: 4px; }
+.swatch { padding: 4px; border-radius: 9999px; border: 1px solid transparent; display: flex; }
+.swatch[aria-checked="true"] { border-color: var(--primary); }
+.swatch i { width: 20px; height: 20px; border-radius: 9999px; display: block; }
+
+/* ---------- Product details block ---------- */
+.details { background: var(--secondary); padding: 56px var(--margin); display: flex; flex-direction: column; gap: 24px; }
+.details-copy { display: flex; flex-direction: column; gap: 24px; margin-bottom: 8px; }
+.details-copy b { font-weight: 600; }
+.acc-list { display: flex; flex-direction: column; }
+.acc-row {
+  width: 100%; display: flex; align-items: center; gap: 16px; padding: 16px 0;
+  text-align: left; color: var(--foreground);
+}
+.acc-list > .acc-row:not(:last-child) { border-bottom: 1px solid var(--input); }
+.acc-row span { flex: 1; }
+.details .feature-img { aspect-ratio: 1; }
+
+/* ---------- How we do right ---------- */
+.right-by-you { background: var(--secondary); padding: 0 var(--margin) 56px; }
+.vcard { display: flex; flex-direction: column; }
+.vcard .ph { aspect-ratio: 1; }
+.vcard-body { background: #fff; padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+.vcard-cta { font: 600 11px/20px var(--sans); letter-spacing: 1px; text-transform: uppercase; text-decoration: underline; text-underline-offset: 2px; align-self: flex-start; }
+
+/* ---------- Feature ---------- */
+.feature { background: #fff; padding: 56px var(--margin); display: flex; flex-direction: column; gap: 32px; }
+.feature-head { display: flex; flex-direction: column; gap: 24px; }
+.feature-head > div { display: flex; flex-direction: column; gap: 8px; }
+.video { position: relative; aspect-ratio: 1; }
+.video .ph { position: absolute; inset: 0; }
+.video::after { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,.2); pointer-events: none; }
+.play {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+  width: 56px; height: 56px; border-radius: 9999px; background: var(--primary); color: #fff;
+  display: flex; align-items: center; justify-content: center; z-index: 1;
+}
+
+/* ---------- UGC ---------- */
+.ugc { background: var(--secondary); }
+.ugc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ugc-grid .ph { aspect-ratio: 1; }
+.ugc-grid .ig { position: absolute; right: 4px; top: 4px; color: #fff; width: 20px; height: 20px; }
+
+/* ---------- Reviews ---------- */
+.reviews { background: #fff; padding: 56px var(--margin); display: flex; flex-direction: column; gap: 32px; }
+.rating-count { padding-bottom: 16px; border-bottom: 1px solid var(--input); }
+.score-row { display: flex; align-items: baseline; gap: 16px; }
+.score { font: 600 72px/1 var(--serif); letter-spacing: -1.8px; color: #202020; font-feature-settings: "lnum" 1, "pnum" 1; }
+.stars { display: flex; gap: 2px; margin-top: 8px; }
+.stars .icon { width: 24px; height: 24px; color: #202020; }
+.summary-block { display: flex; flex-direction: column; gap: 16px; align-items: center; }
+.bars { width: 100%; display: flex; flex-direction: column; gap: 4px; }
+.bar-row { display: flex; align-items: center; gap: 8px; font: 400 12px/16px var(--sans); letter-spacing: 0.12px; }
+.bar-row .n { width: 12px; }
+.bar-row .pct { width: 25px; }
+.bar { flex: 1; height: 18px; background: var(--secondary); position: relative; overflow: hidden; }
+.bar i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--primary); }
+.photo-strip { position: relative; width: 100%; border: 1px solid var(--input); padding: 8px; display: flex; gap: 10px; }
+.photo-strip .ph { flex: 1; aspect-ratio: 1; }
+.strip-ctrl {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 32px; height: 32px; background: #18181b; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+}
+.strip-ctrl.prev { left: -1px; }
+.strip-ctrl.next { right: -1px; }
+.review-accs { display: flex; flex-direction: column; margin-top: 24px; }
+.review-accs .acc-row { border-bottom: 1px solid var(--input); color: var(--primary); }
+.review-accs .acc-row span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ---------- Recently viewed ---------- */
+.recent { border-top: 1px solid var(--input); }
+
+/* ---------- Footer ---------- */
+.footer { background: var(--secondary); }
+.footer-main { padding: 32px var(--margin); display: flex; flex-direction: column; gap: 24px; }
+.footer-logo { font: 400 46px/44px var(--script); color: #202020; height: 44px; }
+.f-acc { border-bottom: 1px solid var(--input); }
+.f-trigger {
+  width: 100%; display: flex; align-items: center; gap: 16px; padding: 16px 0; min-height: 56px;
+  font: 600 14px/16px var(--sans); text-transform: uppercase; color: var(--foreground); text-align: left;
+}
+.f-trigger span { flex: 1; }
+.f-trigger .icon { transition: transform .2s; }
+.f-trigger[aria-expanded="true"] .icon { transform: rotate(180deg); }
+.f-panel { display: flex; flex-direction: column; gap: 12px; padding-bottom: 20px; }
+.f-panel[hidden] { display: none; }
+.f-panel a { font: 400 14px/20px var(--sans); color: var(--muted-foreground); text-decoration: none; }
+.social { display: flex; flex-wrap: wrap; }
+.social a { height: 36px; padding: 10px 8px; display: flex; align-items: center; color: #202020; }
+.copyright { background: var(--accent); padding: 24px var(--margin); display: flex; flex-direction: column; gap: 24px; }
+.copy-tag { font: 600 13px/12px var(--serif); letter-spacing: 1px; text-transform: uppercase; color: #202020; }
+.legal { display: flex; flex-direction: column; gap: 12px; }
+.legal a { font: 400 12px/1 var(--sans); text-decoration: none; }
+.copy-line { font: 400 12px/1 var(--sans); color: var(--secondary-foreground); }
+
+/* ---------- Bottom dock: navigation by default, add-to-bag once the page CTA scrolls out the top ---------- */
+.dock {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 50;
+  height: calc(var(--sticky-h) + env(safe-area-inset-bottom, 0px));
+  background: #fff; border-top: 1px solid var(--accent);
+  overflow: hidden;
+}
+/* Motion tokens from the Shane Co. Transitions & Animation guide */
+:root {
+  --ease-standard: cubic-bezier(0.2, 0, 0.2, 1);
+  --dur-move: 380ms;
+  --dur-dissolve: 280ms;
+}
+/* "Move": navigation entering from an edge; translate only, no fade */
+.dock-layer {
+  position: absolute; inset: 0;
+  padding: 16px var(--margin) calc(14px + env(safe-area-inset-bottom, 0px));
+  display: flex; align-items: center;
+  transition: transform var(--dur-move) var(--ease-standard);
+}
+.dock .nav-layer { transform: translateY(0); }
+.dock .bag-layer { transform: translateY(100%); pointer-events: none; }
+.dock.is-bag .nav-layer { transform: translateY(-100%); pointer-events: none; }
+.dock.is-bag .bag-layer { transform: translateY(0); pointer-events: auto; }
+.dock-layer[inert] { pointer-events: none; }
+/* Shop sits outside both moving layers so it stays put while they swap.
+   Both layers place Shop at the same spot (20px margin + 16px inset from the right), so this lines up exactly. */
+.dock-shop { position: absolute; top: 16px; right: calc(var(--margin) + 16px); z-index: 2; }
+.dock-slot { width: 40px; height: 40px; flex: none; }
+.bottom-nav { flex: 1; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; padding: 0 16px; }
+.sticky-inner { flex: 1; display: flex; align-items: center; gap: 24px; padding-right: 16px; }
+.sticky-inner .btn-primary { flex: 1; padding: 8px 16px; }
+.nav-item { text-decoration: none; color: var(--primary); }
+.nav-item, .shop-toggle { width: 40px; height: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; flex: none; }
+.nav-item .icon, .shop-toggle .icon { width: 20px; height: 20px; }
+.nav-item span, .shop-toggle span { font: 600 10px/12px var(--sans); letter-spacing: 1px; text-transform: uppercase; color: var(--muted-foreground); }
+
+/* ---------- Toast ---------- */
+.toast {
+  position: absolute; left: 50%; bottom: calc(var(--sticky-h) + 12px + env(safe-area-inset-bottom, 0px));
+  transform: translate(-50%, 8px); opacity: 0; pointer-events: none;
+  width: calc(100% - 40px);
+  background: var(--primary); color: #fff; padding: 12px 16px; z-index: 60;
+  font: 500 12px/16px var(--sans); transition: opacity .2s, transform .2s;
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+@media (prefers-reduced-motion: reduce) {
+  .toast, .dot, .f-trigger .icon { transition: none; }
+  /* Reduced motion falls back to "Dissolve": opacity only, no movement */
+  .dock-layer { transition: opacity var(--dur-dissolve) var(--ease-standard); }
+  .dock .bag-layer, .dock.is-bag .nav-layer { transform: none; opacity: 0; }
+  .dock .nav-layer, .dock.is-bag .bag-layer { opacity: 1; }
+}
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+</style>
+</head>
+<body>
+
+<!-- Icon sprite: Phosphor Icons (MIT) + Lucide message-circle (ISC), matching the icons named in Figma -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-caret-right" viewBox="0 0 256 256"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/></symbol>
+  <symbol id="i-caret-left" viewBox="0 0 256 256"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"/></symbol>
+  <symbol id="i-caret-down" viewBox="0 0 256 256"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></symbol>
+  <symbol id="i-caret-down-light" viewBox="0 0 256 256"><path d="M212.24,100.24l-80,80a6,6,0,0,1-8.48,0l-80-80a6,6,0,0,1,8.48-8.48L128,167.51l75.76-75.75a6,6,0,0,1,8.48,8.48Z"/></symbol>
+  <symbol id="i-user" viewBox="0 0 256 256"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.850,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 256 256"><path d="M223,57a58.07,58.07,0,0,0-81.92-.1L128,69.05,114.91,56.86A58,58,0,0,0,33,139l89.35,90.66a8,8,0,0,0,11.4,0L223,139a58,58,0,0,0,0-82Zm-11.35,70.76L128,212.6,44.3,127.680a42,42,0,0,1,59.4-59.4l.2.2,18.65,17.35a8,8,0,0,0,10.9,0L152.1,68.48l.2-.2a42,42,0,1,1,59.36,59.44Z"/></symbol>
+  <symbol id="i-heart-fill" viewBox="0 0 256 256"><path d="M240,98a57.63,57.63,0,0,1-17,41L133.7,229.62a8,8,0,0,1-11.4,0L33,139a58,58,0,0,1,82-82.1L128,69.05l13.09-12.19A58,58,0,0,1,240,98Z"/></symbol>
+  <symbol id="i-envelope" viewBox="0 0 256 256"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 256 256"><path d="M208,40H48A16,16,0,0,0,32,56v56c0,52.72,25.52,84.670,46.93,102.19,23.06,18.86,46,25.26,47,25.53a8,8,0,0,0,4.2,0c1-.27,23.91-6.67,47-25.53C198.48,196.67,224,164.72,224,112V56A16,16,0,0,0,208,40Zm0,72c0,37.07-13.66,67.16-40.6,89.42A129.3,129.3,0,0,1,128,223.62a128.25,128.25,0,0,1-38.92-21.81C61.82,179.51,48,149.3,48,112l0-56,160,0ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z"/></symbol>
+  <symbol id="i-arrows" viewBox="0 0 256 256"><path d="M224,48V96a8,8,0,0,1-8,8H168a8,8,0,0,1,0-16h28.69L182.06,73.37a79.56,79.56,0,0,0-56.13-23.43h-.45A79.52,79.52,0,0,0,69.59,72.71,8,8,0,0,1,58.41,61.27a96,96,0,0,1,135,.79L208,76.69V48a8,8,0,0,1,16,0ZM186.41,183.29a80,80,0,0,1-112.47-.66L59.31,168H88a8,8,0,0,0,0-16H40a8,8,0,0,0-8,8v48a8,8,0,0,0,16,0V179.31l14.63,14.63A95.43,95.43,0,0,0,130,222.06h.53a95.36,95.36,0,0,0,67.07-27.33,8,8,0,0,0-11.18-11.44Z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 256 256"><path d="M232.4,114.49,88.32,26.35a16,16,0,0,0-16.2-.3A15.86,15.86,0,0,0,64,39.87V216.13A15.94,15.94,0,0,0,80,232a16.07,16.07,0,0,0,8.36-2.350L232.4,141.51a15.81,15.81,0,0,0,0-27ZM80,215.94V40l143.83,88Z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 256 256"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"/></symbol>
+  <symbol id="i-list" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"/></symbol>
+  <symbol id="i-instagram" viewBox="0 0 256 256"><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"/></symbol>
+  <symbol id="i-tiktok" viewBox="0 0 256 256"><path d="M224,72a48.05,48.05,0,0,1-48-48,8,8,0,0,0-8-8H128a8,8,0,0,0-8,8V156a20,20,0,1,1-28.57-18.08A8,8,0,0,0,96,130.69V88a8,8,0,0,0-9.4-7.88C50.91,86.480,24,119.1,24,156a76,76,0,0,0,152,0V116.29A103.25,103.25,0,0,0,224,128a8,8,0,0,0,8-8V80A8,8,0,0,0,224,72Zm-8,39.64a87.19,87.19,0,0,1-43.33-16.15A8,8,0,0,0,160,102v54a60,60,0,0,1-120,0c0-25.9,16.64-49.13,40-57.6v27.67A36,36,0,1,0,136,156V32h24.5A64.14,64.14,0,0,0,216,87.5Z"/></symbol>
+  <symbol id="i-facebook" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,191.63V152h24a8,8,0,0,0,0-16H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,0-16H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0,0,16h24v63.63a88,88,0,1,1,16,0Z"/></symbol>
+  <symbol id="i-youtube" viewBox="0 0 256 256"><path d="M164.44,121.34l-48-32A8,8,0,0,0,104,96v64a8,8,0,0,0,12.44,6.66l48-32a8,8,0,0,0,0-13.32ZM120,145.05V111l25.58,17ZM234.33,69.52a24,24,0,0,0-14.49-16.4C185.56,39.88,131,40,128,40s-57.56-.12-91.84,13.12a24,24,0,0,0-14.49,16.4C19.08,79.5,16,97.74,16,128s3.08,48.5,5.67,58.48a24,24,0,0,0,14.49,16.41C69,215.56,120.4,216,127.34,216h1.32c6.94,0,58.37-.44,91.18-13.11a24,24,0,0,0,14.49-16.41c2.59-10,5.67-28.22,5.67-58.48S236.92,79.5,234.33,69.52Zm-15.49,113a8,8,0,0,1-4.77,5.49c-31.65,12.22-85.48,12-86,12H128c-.54,0-54.33.2-86-12a8,8,0,0,1-4.77-5.49C34.8,173.39,32,156.57,32,128s2.8-45.39,5.16-54.47A8,8,0,0,1,41.930,68c30.52-11.79,81.66-12,85.85-12h.27c.54,0,54.38-.18,86,12a8,8,0,0,1,4.77,5.49C221.2,82.61,224,99.43,224,128S221.2,173.39,218.84,182.47Z"/></symbol>
+  <symbol id="i-pinterest" viewBox="0 0 256 256"><path d="M224,112c0,22.57-7.9,43.2-22.23,58.11C188.39,184,170.25,192,152,192c-17.88,0-29.82-5.86-37.43-12l-10.78,45.82A8,8,0,0,1,96,232a8.24,8.24,0,0,1-1.84-.21,8,8,0,0,1-6-9.62l32-136a8,8,0,0,1,15.58,3.66l-16.9,71.8C122,166,131.3,176,152,176c27.53,0,56-23.94,56-64A72,72,0,1,0,73.63,148a8,8,0,0,1-13.85,8A88,88,0,1,1,224,112Z"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 256 256"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 256 256"><path d="M236,69.4A16.13,16.13,0,0,0,223.92,64H176a48,48,0,0,0-96,0H32.08a16.13,16.13,0,0,0-12,5.4,16,16,0,0,0-3.92,12.48l14.26,120a16,16,0,0,0,16,14.12H209.67a16,16,0,0,0,16-14.12l14.26-120A16,16,0,0,0,236,69.4ZM128,32a32,32,0,0,1,32,32H96A32,32,0,0,1,128,32Zm81.76,168a.13.13,0,0,1-.09,0H46.25L32.08,80H224Z"/></symbol>
+  <symbol id="i-care" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5h10l3.5 5L12 20.5 3.5 10Z"/><path d="M11 5 9 10l3 10.5L15 10l-2-5"/><path d="M3.5 10h17"/><path d="M3 2v3M1.5 3.5h3M21 18v3M19.5 19.5h3"/></g></symbol>
+  <symbol id="i-account" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM74.08,197.5a64,64,0,0,1,107.84,0,87.83,87.83,0,0,1-107.84,0ZM96,120a32,32,0,1,1,32,32A32,32,0,0,1,96,120Zm97.76,66.41a79.66,79.66,0,0,0-36.06-28.75,48,48,0,1,0-59.4,0,79.66,79.66,0,0,0-36.06,28.75,88,88,0,1,1,131.52,0Z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<div class="frame" id="frame">
+<div class="scroller" id="scroller">
+<div class="page">
+
+  <!-- Header -->
+  <header class="site-header">
+    <a href="#" class="header-logo" aria-label="Shane Co. home">
+      <img src="data:image/png;base64,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" width="140" height="60" alt="Shane Co. Your Friend &amp; Jeweler">
+    </a>
+  </header>
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="#">Home</a>
+    <svg class="icon"><use href="#i-caret-right"/></svg>
+    <a href="#">Jewelry</a>
+    <svg class="icon"><use href="#i-caret-right"/></svg>
+    <a href="#" aria-current="page">Necklaces</a>
+  </nav>
+
+  <main>
+    <!-- Gallery -->
+    <section class="gallery" aria-label="Product images">
+      <div class="gallery-track" id="galleryTrack">
+        <div class="ph product" role="img" aria-label="Moon and Stars Coin Pendant, image 1"><span>Product image 1</span></div>
+        <div class="ph deep" role="img" aria-label="Moon and Stars Coin Pendant, image 2"><span>Product image 2</span></div>
+        <div class="ph product" role="img" aria-label="Moon and Stars Coin Pendant, image 3"><span>Product image 3</span></div>
+        <div class="ph deep" role="img" aria-label="Moon and Stars Coin Pendant, image 4"><span>Product image 4</span></div>
+      </div>
+      <button class="try-on label-xs" type="button"><svg class="icon"><use href="#i-user"/></svg>Try it on</button>
+      <div class="dots" aria-hidden="true"><div class="dots-inner" id="galleryDots">
+        <i class="dot on"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i>
+      </div></div>
+    </section>
+
+    <!-- Product info -->
+    <section class="info">
+      <div class="info-group">
+        <h1 class="h4">Moon &amp; Stars Coin Pendant</h1>
+        <div class="specs body-s-med"><span>24" Cable Chain</span><span>∙</span><span>Sterling Silver</span></div>
+        <p class="body-s-med muted">Article No. 41107604</p>
+        <p class="price-main">$125</p>
+        <a href="#details" class="label-xs label-u text-link">View product details</a>
+      </div>
+
+      <div>
+        <div class="sep"></div>
+        <div class="config" style="margin-top:32px">
+          <h2 class="h4">Select your Chain Length</h2>
+          <div class="lengths" role="radiogroup" aria-label="Chain length" id="lengths">
+            <button class="len label-xs" role="radio" aria-checked="false" data-len="18"><span>18”</span></button>
+            <button class="len label-xs" role="radio" aria-checked="false" data-len="20" disabled aria-label="20 inch, unavailable"><span>20”</span></button>
+            <button class="len label-xs" role="radio" aria-checked="false" data-len="22"><span>22”</span></button>
+            <button class="len label-xs" role="radio" aria-checked="true" data-len="24"><span>24”</span></button>
+            <button class="len label-xs" role="radio" aria-checked="false" data-len="26"><span>26”</span></button>
+          </div>
+          <div class="len-summary" aria-live="polite">
+            <span class="strong" id="lenLabel">24” Length</span>
+            <span class="body-s-med muted" id="lenDelta">+$20</span>
+          </div>
+        </div>
+        <div class="sep" style="margin-top:44px"></div>
+        <div class="config" style="margin-top:32px">
+          <h2 class="h4">Personalize Your Piece</h2>
+          <div class="addon-list">
+            <button class="addon" type="button">
+              <span class="addon-thumb engrave" aria-hidden="true">Abc</span>
+              <span class="addon-body"><span class="label-xs">Add engraving</span><span class="addon-sub">Make it uniquely yours · <b>from $60</b></span></span>
+              <svg class="icon"><use href="#i-caret-right"/></svg>
+            </button>
+            <button class="addon" type="button">
+              <span class="addon-thumb ph product" aria-hidden="true"></span>
+              <span class="addon-body"><span class="label-xs">Add a Chain Extender</span><span class="addon-sub">3 available options · <b>from $40</b></span></span>
+              <svg class="icon"><use href="#i-caret-right"/></svg>
+            </button>
+            <button class="addon" type="button">
+              <span class="addon-thumb ph product" aria-hidden="true"></span>
+              <span class="addon-body"><span class="label-xs">Add a Layering Clasp</span><span class="addon-sub">2 available option · <b>from $450</b></span></span>
+              <svg class="icon"><use href="#i-caret-right"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="sep" style="margin-top:44px;margin-bottom:0"></div>
+      </div>
+
+      <div class="finance">
+        <div class="finance-badge" aria-hidden="true">Shane Co</div>
+        <div class="finance-body">
+          <p class="finance-title">Financing Available</p>
+          <p class="finance-copy">$123/mo suggested payments with 12-month special financing.</p>
+          <a href="#" class="label-xs label-u">Learn More</a>
+        </div>
+      </div>
+
+      <div class="cta-stack">
+        <div class="cta-col">
+          <button class="btn-primary label-xs" type="button" data-add id="pageAddToBag">Add to bag</button>
+          <div class="btn-row">
+            <button class="btn-outline label-xs" type="button" aria-pressed="false" id="saveBtn">
+              <svg class="icon ic-off"><use href="#i-heart"/></svg><svg class="icon ic-on"><use href="#i-heart-fill"/></svg><span>Save</span>
+            </button>
+            <button class="btn-outline label-xs" type="button"><svg class="icon"><use href="#i-envelope"/></svg>Drop a Hint</button>
+          </div>
+        </div>
+        <a href="#" class="chat-link label-xs label-u"><svg class="icon"><use href="#i-chat"/></svg>Chat with a Jewelry Consultant</a>
+      </div>
+
+      <div class="perks">
+        <div class="perk label-xs"><svg class="icon"><use href="#i-shield"/></svg><span>Free Lifetime<br>Warranty</span></div>
+        <div class="perk label-xs"><svg class="icon"><use href="#i-arrows"/></svg><span>Free 60 day<br>returns</span></div>
+      </div>
+
+      <div class="delivery">
+        <div class="delivery-row">
+          <div class="delivery-text">
+            <p class="label-xs">Always free shipping</p>
+            <a href="#" class="delivery-sub" style="font-weight:500">Details</a>
+          </div>
+          <p class="h5">By Wed, Sep 9</p>
+        </div>
+        <div class="delivery-row">
+          <div class="delivery-text">
+            <p class="label-xs">Need it sooner?</p>
+            <p class="delivery-sub">Choose a faster delivery option at checkout. <a href="#">Learn More</a></p>
+          </div>
+          <svg class="icon"><use href="#i-caret-down"/></svg>
+        </div>
+        <div class="delivery-row">
+          <div class="delivery-text">
+            <p class="label-xs">Pick up in store</p>
+            <p class="store-line"><a href="#">Cupertino, Valley Fair</a><span>-</span><span class="in-stock">In Stock</span></p>
+          </div>
+          <svg class="icon"><use href="#i-caret-right"/></svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- You May Also Like -->
+    <section class="section" aria-labelledby="ymal">
+      <div class="section-head"><h2 class="h3" id="ymal">You May Also Like</h2></div>
+      <div class="rail">
+        <article class="pcard">
+          <div class="pcard-media"><div class="ph product"><span>Product image</span></div></div>
+          <div class="pcard-body"><p class="pcard-title">New-Dawn Coin Pendant in Sterling Silver</p><p class="pcard-price">$125</p></div>
+        </article>
+        <article class="pcard">
+          <div class="pcard-media"><div class="ph product"><span>Product image</span></div></div>
+          <div class="pcard-body"><p class="pcard-title">North Star Diamond Pendant in Sterling Silver</p><p class="pcard-price">$425</p></div>
+        </article>
+        <article class="pcard">
+          <div class="pcard-media"><div class="ph product"><span>Product image</span></div><span class="badge">Supports Students</span></div>
+          <div class="pcard-body"><p class="pcard-title">North Star Garnet Pendant in Sterling Silver</p><p class="pcard-price">$150</p></div>
+        </article>
+        <article class="pcard">
+          <div class="pcard-media"><div class="ph product"><span>Product image</span></div><span class="badge">Supports Students</span></div>
+          <div class="pcard-body"><p class="pcard-title">North Star Amethyst Pendant in Sterling Silver</p><p class="pcard-price">$150</p></div>
+        </article>
+        <article class="pcard">
+          <div class="pcard-media"><div class="ph product"><span>Product image</span></div><span class="badge">August Birthstone</span></div>
+          <div class="pcard-body"><p class="pcard-title">North Star Peridot Pendant in Sterling Silver</p><p class="pcard-price">$150</p></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Product details -->
+    <section class="details" id="details">
+      <div class="details-copy">
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <p class="label-xs">Crafted with care</p>
+          <h2 class="h3">Moon &amp; Stars Coin Pendant in Sterling Silver</h2>
+        </div>
+        <p class="body-m">This stylish coin pendant features a celestial design with a shining star and a crescent moon. It's crafted with care in <b>high-quality sterling silver</b> and comes on a matching cable chain that's adjustable for easy layering with other favorite necklaces.</p>
+        <div class="acc-list">
+          <button class="acc-row body-s-med" type="button"><span>Product Details</span><svg class="icon"><use href="#i-caret-right"/></svg></button>
+          <button class="acc-row body-s-med" type="button"><span>Necklace Length Guide</span><svg class="icon"><use href="#i-caret-right"/></svg></button>
+          <button class="acc-row body-s-med" type="button"><span>Care &amp; Cleaning</span><svg class="icon"><use href="#i-caret-right"/></svg></button>
+        </div>
+      </div>
+      <div class="ph deep feature-img" role="img" aria-label="Model wearing the pendant"><span>Lifestyle image</span></div>
+    </section>
+
+    <!-- How We Do Right by You -->
+    <section class="right-by-you" aria-labelledby="rbu">
+      <div class="section-head">
+        <p class="label-xs">We are more than a jeweler</p>
+        <h2 class="h3" id="rbu">How We Do Right by You</h2>
+      </div>
+      <div class="rail">
+        <article class="vcard"><div class="ph deep"><span>Image</span></div><div class="vcard-body"><h3 class="h4">Free Lifetime<br>Warranty</h3><a href="#" class="vcard-cta">How It Works</a></div></article>
+        <article class="vcard"><div class="ph deep"><span>Image</span></div><div class="vcard-body"><h3 class="h4">Trade Up<br>Program</h3><a href="#" class="vcard-cta">How to Upgrade</a></div></article>
+        <article class="vcard"><div class="ph deep"><span>Image</span></div><div class="vcard-body"><h3 class="h4">Free 2 Day<br>Shipping</h3><a href="#" class="vcard-cta">Delivery Options</a></div></article>
+        <article class="vcard"><div class="ph deep"><span>Image</span></div><div class="vcard-body"><h3 class="h4">Always the Best<br>Possible Price</h3><a href="#" class="vcard-cta">Fair Pricing</a></div></article>
+        <article class="vcard"><div class="ph deep"><span>Image</span></div><div class="vcard-body"><h3 class="h4">Quality Diamonds<br>Direct From Source</h3><a href="#" class="vcard-cta">How We Source</a></div></article>
+        <article class="vcard"><div class="ph deep"><span>Image</span></div><div class="vcard-body"><h3 class="h4">60 Day<br>Free Returns</h3><a href="#" class="vcard-cta">Return Policy</a></div></article>
+      </div>
+    </section>
+
+    <!-- Feature block -->
+    <section class="feature">
+      <div class="feature-head">
+        <div><p class="label-xs">Style guide</p><h2 class="h3">How To Layer Necklaces</h2></div>
+        <p class="body-m">Learn how to combine different chain lengths and pendant styles to create a look that's uniquely yours.</p>
+      </div>
+      <div class="video">
+        <div class="ph deep"><span>Video poster</span></div>
+        <button class="play" type="button" aria-label="Play video"><svg class="icon"><use href="#i-play"/></svg></button>
+      </div>
+    </section>
+
+  </main>
+
+</div>
+</div>
+
+<!-- Bottom dock: site navigation by default; swaps to add-to-bag once the page CTA leaves the top of the frame -->
+<div class="dock" id="dock">
+  <div class="dock-layer nav-layer" id="navLayer">
+    <nav class="bottom-nav" aria-label="Main">
+      <a href="#" class="nav-item"><svg class="icon"><use href="#i-search"/></svg><span>Search</span></a>
+      <a href="#" class="nav-item"><svg class="icon"><use href="#i-bag"/></svg><span>Bag</span></a>
+      <a href="#" class="nav-item"><svg class="icon"><use href="#i-care"/></svg><span>Care</span></a>
+      <a href="#" class="nav-item"><svg class="icon"><use href="#i-account"/></svg><span>Account</span></a>
+      <span class="dock-slot" aria-hidden="true"></span>
+    </nav>
+  </div>
+  <div class="dock-layer bag-layer" id="bagLayer" role="region" aria-label="Add to bag" inert>
+    <div class="sticky-inner">
+      <button class="btn-primary label-xs" type="button" data-add>$125 - Add to bag</button>
+      <span class="dock-slot" aria-hidden="true"></span>
+    </div>
+  </div>
+  <button class="shop-toggle dock-shop" type="button"><svg class="icon"><use href="#i-list"/></svg><span>Shop</span></button>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+</div>
+
+<script>
+(function () {
+  // Gallery dots follow scroll position
+  var track = document.getElementById('galleryTrack');
+  var gDots = document.querySelectorAll('#galleryDots .dot');
+  track.addEventListener('scroll', function () {
+    var i = Math.round(track.scrollLeft / track.clientWidth);
+    gDots.forEach(function (d, n) { d.classList.toggle('on', n === i); });
+  }, { passive: true });
+
+  // Chain length selector
+  var lenLabel = document.getElementById('lenLabel');
+  var lenDelta = document.getElementById('lenDelta');
+  document.querySelectorAll('#lengths .len').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('#lengths .len').forEach(function (o) { o.setAttribute('aria-checked', 'false'); });
+      b.setAttribute('aria-checked', 'true');
+      lenLabel.textContent = b.dataset.len + '” Length';
+      lenDelta.textContent = b.dataset.len === '24' ? '+$20' : '';
+    });
+  });
+
+  // Save
+  var save = document.getElementById('saveBtn');
+  save.addEventListener('click', function () {
+    var on = save.getAttribute('aria-pressed') !== 'true';
+    save.setAttribute('aria-pressed', String(on));
+    save.querySelector('span').textContent = on ? 'Saved' : 'Save';
+  });
+
+  // Dock swap: show the add-to-bag bar only once the page CTA has scrolled out the TOP of the frame
+  var scroller = document.getElementById('scroller');
+  var pageCta = document.getElementById('pageAddToBag');
+  var dock = document.getElementById('dock');
+  var navLayer = document.getElementById('navLayer');
+  var bagLayer = document.getElementById('bagLayer');
+  var showingBag = false;
+  function updateDock() {
+    var past = pageCta.getBoundingClientRect().bottom <= scroller.getBoundingClientRect().top;
+    if (past === showingBag) return;
+    showingBag = past;
+    dock.classList.toggle('is-bag', past);
+    if (past) { bagLayer.removeAttribute('inert'); navLayer.setAttribute('inert', ''); }
+    else { navLayer.removeAttribute('inert'); bagLayer.setAttribute('inert', ''); }
+  }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(updateDock, { root: scroller, threshold: [0, 1] }).observe(pageCta);
+  }
+  scroller.addEventListener('scroll', updateDock, { passive: true });
+  updateDock();
+
+  // Add to bag toast
+  var toast = document.getElementById('toast'), timer;
+  document.querySelectorAll('[data-add]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var len = document.querySelector('#lengths [aria-checked="true"]').dataset.len;
+      toast.textContent = 'Added to bag: Moon & Stars Coin Pendant, ' + len + '” chain';
+      toast.classList.add('show');
+      clearTimeout(timer);
+      timer = setTimeout(function () { toast.classList.remove('show'); }, 2400);
+    });
+  });
+})();
+</script>
+</body>
+</html>
